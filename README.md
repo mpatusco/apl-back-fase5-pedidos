@@ -7,9 +7,9 @@
     Aplicação criada para o projeto de Pós-Graduação em Arquitetura de software pela FIAP.
     <br />
     <br />
-    <a href="https://github.com/PauloLoboNeto/fiappedidos/issues">Report Bug</a>
+    <a href="https://github.com/mpatusco/apl-back-fase5-pedidos/issues">Report Bug</a>
     ·
-    <a href="https://github.com/PauloLoboNeto/fiappedidos/issues">Request Feature</a>
+    <a href="https://github.com/mpatusco/apl-back-fase5-pedidos/issues">Request Feature</a>
   </p>
 </div>
 
@@ -40,8 +40,7 @@
 
 
 Esta aplicação foi criada por:
-- Gabriel Almeida dos Santos, rm430120, gabrielalmeidads@gmail.com
-- Paulo Lobo Neto, rm430057, pauloloboneto@gmail.com
+- Matheus Patusco Bascur, rm350519, m.patusco13@gmail.com
 
 <p align="right">(<a href="#readme-top">ir para o topo</a>)</p>
 

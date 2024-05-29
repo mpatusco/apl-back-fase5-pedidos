@@ -11,13 +11,13 @@ spec:
   template:
     metadata:
 #      annotations:
-#        eks.amazonaws.com/role-arn: arn:aws:iam::231670762225:role/my-app-service-account
+#        eks.amazonaws.com/role-arn: arn:aws:iam::{aws-account}:role/my-app-service-account
       labels:
         app: apl-pedidos
     spec:
       containers:
         - name: apl-pedidos
-          image: plobon/apl-back:v4
+          image: apl-back:v4
           imagePullPolicy: "Always"
           env:
             - name: spring.jpa.properties.hibernate.dialect
