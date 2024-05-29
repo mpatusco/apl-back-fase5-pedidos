@@ -1,0 +1,21 @@
+# Create a configmap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: apl-pedidos-config
+  labels:
+    app: apl-pedidos
+data:
+  DATASOURCE_INITIALIZATION_MODE: always
+  DATASOURCE_INITIALIZE: 'true'
+  DATASOURCE_CONTINUE_ON_ERROR: 'true'
+  HIBERNATE_DIALECT: org.hibernate.dialect.PostgreSQLDialect
+  HIBERNATE_SHOW_SQL: 'true'
+  HIBERNATE_DDL_AUTO: update
+  SERVER_PORT: '9091'
+  PAGAMENTOS_URL: http://af364a263ef724496bbc2c202a4f729b-962965779.us-east-1.elb.amazonaws.com:9090/tech-challenge
+  SERVLET_CONTEXT_PATH: /tech-challenge
+  FEIGN_CONNECT_TIMEOUT: '14000'
+  FEIGN_READ_TIMEOUT: '14000'
+  QUEUE_FILA_PEDIDO: 'Fila1'
+  QUEUE_UPDATE_PEDIDO: 'StatusChange'

@@ -1,0 +1,90 @@
+# Create a deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: apl-pedidos
+spec:
+  selector:
+    matchLabels:
+      app: apl-pedidos
+  replicas: 1
+  template:
+    metadata:
+#      annotations:
+#        eks.amazonaws.com/role-arn: arn:aws:iam::231670762225:role/my-app-service-account
+      labels:
+        app: apl-pedidos
+    spec:
+      containers:
+        - name: apl-pedidos
+          image: plobon/apl-back:v4
+          imagePullPolicy: "Always"
+          env:
+            - name: spring.jpa.properties.hibernate.dialect
+              valueFrom: 
+                configMapKeyRef:
+                  name: apl-pedidos-config
+                  key: HIBERNATE_DIALECT
+            - name: spring.jpa.hibernate.show-sql
+              valueFrom: 
+                configMapKeyRef:
+                  name: apl-pedidos-config
+                  key: HIBERNATE_SHOW_SQL
+            - name: spring.datasource.initialization-mode
+              valueFrom: 
+                configMapKeyRef:
+                  name: apl-pedidos-config
+                  key: DATASOURCE_INITIALIZATION_MODE
+            - name: spring.datasource.initialize
+              valueFrom: 
+                configMapKeyRef:
+                  name: apl-pedidos-config
+                  key: DATASOURCE_INITIALIZE
+            - name: spring.datasource.continue-on-error
+              valueFrom: 
+                configMapKeyRef:
+                  name: apl-pedidos-config
+                  key: DATASOURCE_CONTINUE_ON_ERROR
+            - name: spring.jpa.hibernate.ddl-auto
+              valueFrom: 
+                configMapKeyRef:
+                  name: apl-pedidos-config
+                  key: HIBERNATE_DDL_AUTO
+            - name: server.port
+              valueFrom:
+                configMapKeyRef:
+                  name: apl-pedidos-config
+                  key: SERVER_PORT
+            - name: server.servlet.context-path
+              valueFrom:
+                configMapKeyRef:
+                  name: apl-pedidos-config
+                  key: SERVLET_CONTEXT_PATH
+            - name: pagamentos.service.url
+              valueFrom:
+                configMapKeyRef:
+                  name: apl-pedidos-config
+                  key: PAGAMENTOS_URL
+            - name: feign.client.config.default.connectTimeout
+              valueFrom:
+                configMapKeyRef:
+                  name: apl-pedidos-config
+                  key: FEIGN_CONNECT_TIMEOUT
+            - name: feign.client.config.default.readTimeout
+              valueFrom:
+                configMapKeyRef:
+                  name: apl-pedidos-config
+                  key: FEIGN_READ_TIMEOUT
+            - name: queue.fila.pedido
+              valueFrom:
+                configMapKeyRef:
+                  name: apl-pedidos-config
+                  key: QUEUE_FILA_PEDIDO
+            - name: queue.update.pedido
+              valueFrom:
+                configMapKeyRef:
+                  name: apl-pedidos-config
+                  key: QUEUE_UPDATE_PEDIDO
+
+          ports:
+            - containerPort: 9091

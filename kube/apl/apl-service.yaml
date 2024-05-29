@@ -1,0 +1,15 @@
+# Create a service
+kind: Service
+apiVersion: v1
+metadata:
+  name: apl-pedidos
+  annotations:
+    eks.amazonaws.com/role-arn: "arn:aws:iam::231670762225:role/eks-eks-nodes"
+spec:
+  selector:
+    app: apl-pedidos
+  ports:
+    - name: apl-pedidos
+      targetPort: 9091
+      port: 9091
+  type: LoadBalancer
